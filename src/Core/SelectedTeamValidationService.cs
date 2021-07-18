@@ -24,7 +24,7 @@ namespace Core
             }
             if (bowlersCount < 5)
             {
-                throw new InvalidTeamSelectionException($"Only {bowlersCount} bowlers are available");
+                throw new InvalidTeamSelectionException($"Only {bowlersCount} bowler(s) are available");
             }
             if (keeperCount < 1)
             {

@@ -14,7 +14,7 @@ namespace Api.Controllers
         private readonly ITeamSelectionService _teamSelectionService;
         public TeamSelectionController(ITeamSelectionService teamSelectionService)
         {
-            _teamSelectionService = teamSelectionService ?? throw new ArgumentNullException(nameof(ITeamSelectionService));
+            _teamSelectionService = teamSelectionService ?? throw new ArgumentNullException(default, nameof(ITeamSelectionService));
         }
 
         /// <summary>

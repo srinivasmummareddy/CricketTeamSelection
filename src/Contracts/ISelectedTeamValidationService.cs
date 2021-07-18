@@ -6,6 +6,5 @@ namespace Contracts
     public interface ISelectedTeamValidationService
     {
         void ValidateTheSelectedTeam(IEnumerable<Player> selectedTeam);
-
     }
 }

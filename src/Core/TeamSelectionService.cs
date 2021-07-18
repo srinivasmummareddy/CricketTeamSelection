@@ -15,9 +15,9 @@ namespace Core
             ISelectedTeamValidationService selectedTeamValidationService,
             ITeamEnricherService teamEnricherService)
         {
-            _playersRepository = playersRepository ?? throw new ArgumentNullException(nameof(IPlayersRepository));
-            _selectedTeamValidationService = selectedTeamValidationService ?? throw new ArgumentNullException(nameof(ISelectedTeamValidationService));
-            _teamEnricherService = teamEnricherService ?? throw new ArgumentNullException(nameof(ITeamEnricherService));
+            _playersRepository = playersRepository ?? throw new ArgumentNullException(default, nameof(IPlayersRepository));
+            _selectedTeamValidationService = selectedTeamValidationService ?? throw new ArgumentNullException(default, nameof(ISelectedTeamValidationService));
+            _teamEnricherService = teamEnricherService ?? throw new ArgumentNullException(default, nameof(ITeamEnricherService));
         }
 
         public async Task<SelectedTeam> SelectTalentedPlayersAsync(SelectionCriteria selectionCriteria)
