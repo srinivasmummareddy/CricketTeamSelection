@@ -16,11 +16,11 @@ namespace Infrastructure.Repositories
             using IDbConnection connection = Open();
 
             var parameters = new DynamicParameters();
-            parameters.Add(Constants.Height, 5.4f);
-            parameters.Add(Constants.Bmi, 24f);
-            parameters.Add(Constants.Runs, 7000);
-            parameters.Add(Constants.Wickets, 100);
-            parameters.Add(Constants.Stumpings, 100);
+            parameters.Add(Constants.Height, selectionCriteria.PlayerHeight);
+            parameters.Add(Constants.Bmi, selectionCriteria.PlayerBmi);
+            parameters.Add(Constants.Runs, selectionCriteria.PlayerRuns);
+            parameters.Add(Constants.Wickets, selectionCriteria.PlayerWickets);
+            parameters.Add(Constants.Stumpings, selectionCriteria.PlayerStumpings);
 
             var functionName = "\"CricketSelection\".selectedteam";
             return await connection.QueryAsync<Player>(functionName, parameters, commandType: CommandType.StoredProcedure);

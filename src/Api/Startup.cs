@@ -5,9 +5,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Npgsql;
+using System;
 using System.Data;
+using System.IO;
+using System.Reflection;
 
 namespace Api
 {
@@ -31,6 +34,26 @@ namespace Api
             services.AddTransient<ITeamEnricherService, TeamEnricherService>();
             services.AddTransient<ITeamSelectionService, TeamSelectionService>();
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "CricketTeamSelection", 
+                    Version = "v1",
+                    Description = "This API selects cricket team according to selection criteria",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Srinivas Mummareddy",
+                        Email = "srinivasmummareddy@yahoo.com",
+                        Url = new Uri("https://www.linkedin.com/in/srinivas-mummareddy/"),
+                    },
+                });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             services.AddControllers();
         }
 
@@ -38,6 +61,9 @@ namespace Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseExceptionHandler("/Error");
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CricketTeamSelection v1"));
 
             app.UseHttpsRedirection();
 
