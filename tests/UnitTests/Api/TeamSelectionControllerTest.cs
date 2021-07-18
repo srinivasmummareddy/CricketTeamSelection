@@ -31,7 +31,7 @@ namespace UnitTests.Api
         public async Task Controller_Should_Return_200()
         {
             var controller = new TeamSelectionController(_mockTeamSelectionService.Object);
-            var response = await controller.CreateTeam(null);
+            var response = await controller.CreateTeam(new SelectionCriteria());
 
             ((ObjectResult)response.Result).StatusCode.ShouldNotBeNull();
 
