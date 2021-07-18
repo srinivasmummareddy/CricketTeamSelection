@@ -1,4 +1,5 @@
 ﻿using Contracts;
+using System;
 using System.Data;
 
 namespace Infrastructure.Repositories
@@ -9,7 +10,7 @@ namespace Infrastructure.Repositories
 
         public Repository(IDbConnection connection)
         {
-            _connection = connection;
+            _connection = connection ?? throw new ArgumentNullException(default, nameof(IDbConnection)); ;
         }
 
         public IDbConnection Open()
