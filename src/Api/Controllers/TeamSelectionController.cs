@@ -40,6 +40,10 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<ActionResult<SelectedTeam>> CreateTeam([FromBody] SelectionCriteria selectionCriteriaDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var selectedTeam = await _teamSelectionService.SelectTalentedPlayersAsync(selectionCriteriaDto);
             return Ok(selectedTeam);
         }

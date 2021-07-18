@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Models
@@ -7,22 +8,22 @@ namespace Models
     {
         [JsonProperty("playerHeight")]
         [Required]
-        public float PlayerHeight { get; set; }
+        public float? PlayerHeight { get; set; }
 
         [JsonProperty("playerBMI")]
         [Required]
-        public float PlayerBmi { get; set; }
+        public float? PlayerBmi { get; set; }
 
         [JsonProperty("playerRuns")]
         [Required]
-        public int PlayerRuns { get; set; }
+        public int? PlayerRuns { get; set; }
 
         [JsonProperty("playerWickets")]
         [Required]
-        public int PlayerWickets { get; set; }
+        public int? PlayerWickets { get; set; }
 
         [JsonProperty("playerStumpings")]
         [Required]
-        public int PlayerStumpings { get; set; }
+        public int? PlayerStumpings { get; set; }
     }
 }
